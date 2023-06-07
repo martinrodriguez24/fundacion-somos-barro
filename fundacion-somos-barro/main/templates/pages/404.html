@@ -1,0 +1,9 @@
+{% extends 'index.html' %}
+{% block title %} Pagina no encontrada {% endblock %}
+
+{% block content %}
+<div class="contenido">
+<h1>No se encontro la pagina que buscabas</h1>
+<a class="btn btn-success" href="{% url 'home' %}">Volver al inicio</a>
+</div>
+{% endblock %}

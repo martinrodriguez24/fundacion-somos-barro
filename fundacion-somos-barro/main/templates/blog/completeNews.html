@@ -1,0 +1,49 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %} Noticia completa {% endblock %}
+
+{% block content %}
+
+<div id="noticiaCompleta" class="contenido">
+    <h1>{{news.title}}</h1>
+    <p>{{news.created}}</p>
+    <img src="{{news.img.url}}" class="contenido" />
+    <p>{{news.description}}</p>
+</div>
+
+<div class="contenido">
+    <h2>Escribe un comentario</h2>
+    {% if session %}
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <div class="mb-3">
+               
+                <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <input class="btn btn-success" type="submit" value="subir" />
+            </div>
+    </form>
+</div>
+
+{% else %}
+<p>Inicia sesion para comentar</p>
+{% endif %}
+<section id="comentarios">
+    {% if comment %}
+    {% for comm in comment %}
+    <div class="contenidoComentarios">
+        <div class="infoComentarios">
+            <p>{{ comm.name }}</p>
+            <p>{{ comm.created_on }}</p>
+        </div>
+        <p>{{ comm.content }}</p>
+    </div>
+    {% endfor %}
+    {% endif %}
+</section>
+
+</div>
+
+
+
+{% endblock %}
